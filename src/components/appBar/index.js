@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Page from './page';
 import { connect } from 'react-redux';
+import findSuggestions from '../../redux/actions/findSuggestions';
 
 
 class IAppBar extends Component {
@@ -20,6 +21,8 @@ class IAppBar extends Component {
         this.setState({
             text
         });
+
+        this.props.findSuggestions(text);
     }
     
     onChangeSelection(text) {
@@ -50,6 +53,10 @@ const mapStateToProps = (state) => {
 };
 
 // mapDispatchToProps regresa funciones que son acciones o creadores de acciones (action creators).
-const mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+    return {
+        findSuggestions: text => dispatch(findSuggestions(text)),
+    };
+};
 
-export default connect(mapStateToProps)(IAppBar);
+export default connect(mapStateToProps, mapDispatchToProps)(IAppBar);
