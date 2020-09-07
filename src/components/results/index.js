@@ -10,11 +10,11 @@ import Page from './page';
 
 class Results extends Component {
     render() {
-        const { suggestions } = this.props;
+        const { results } = this.props;
 
         return (
             <Page 
-                suggestions = { suggestions }
+                results = { results }
             />
         );
     }
@@ -23,7 +23,7 @@ class Results extends Component {
 // Usando mapStateToProps, cualquier cosa que retornemos se va a hacer disponible como una propiedad en nuestro componente  
 const mapStateToProps = (state) => {
     return {
-        suggestions: state.suggestions,
+        results: state.results,
     };
 };
 
