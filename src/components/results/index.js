@@ -3,9 +3,11 @@
 // Connect lo que nos permite es conectar nuestro componente para que pueda acceder al estado de los reducer
 // mapStateToProps es una funcion que recibe el estado almacenado en el store (dentro del store almacenamos los reducers y accedemos a esa informacion)
 
+// Navegacion usando 'react-router-dom'
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Page from './page';
 
 class Results extends Component {
@@ -15,6 +17,9 @@ class Results extends Component {
         return (
             <Page 
                 results = { results }
+                goTo={ (path) => {
+                    this.props.history.push(path);
+                }}
             />
         );
     }
@@ -28,4 +33,6 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps)(Results);
+export default withRouter (
+    connect(mapStateToProps)(Results)
+);
